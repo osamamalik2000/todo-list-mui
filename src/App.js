@@ -30,7 +30,7 @@ function App() {
   return (
     <>
       <Container>
-        <div className="text-center">
+        <div className="text-center pt-5">
           <Typography variant="h3">Task List</Typography>
         </div>
         <ToDoForm />
