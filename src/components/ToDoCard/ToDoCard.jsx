@@ -1,26 +1,37 @@
 import React from 'react'
-
-import { Card, CardContent, Typography, Container, IconButton} from "@mui/material";
+import { Card, CardContent, Typography, Container, IconButton } from "@mui/material";
 import { Check, Delete } from "@material-ui/icons";
-import "./ToDoCard.css";
-function ToDoCard({title}) {
-  return (
-    <Container>
-      <Card variant="outline" style={{ marginTop: '2rem', background: 'lightgray' }}>
-        <CardContent>
-            <Typography variant='h5' component='h2'>
-                <IconButton>
-                    <Check className="success" />
-                </IconButton>
-                {title}
-                <IconButton className='right'>
-                    <Delete className="danger" />
-                </IconButton>
-            </Typography>
-        </CardContent>
-      </Card>
-    </Container>
-  )
+import RemoveDoneIcon from '@mui/icons-material/RemoveDone';
+
+function ToDoCard({ todo, markAsDone, deleteTodo }) {
+    const todoStyle = todo.isCompleted ? { textDecoration: "line-through" } : { textDecoration: "none" }
+
+    const deleteTask = () => {
+        deleteTodo(todo.id)
+    }
+
+    const markAsDoneClick = () => {
+        markAsDone(todo.id)
+    }
+
+    return (
+
+        <Container>
+            <Card variant="outline" className="bg-color-gray my-4">
+                <CardContent>
+                    <Typography variant='h5' component='h2' style={todoStyle}>
+                        <IconButton onClick={markAsDoneClick}>
+                            {todo.isCompleted ? <RemoveDoneIcon className="bt-danger" /> : <Check className="bt-success" />}
+                        </IconButton>
+                        {todo.title}
+                        <IconButton onClick={deleteTask} className='float-end'>
+                            <Delete className="bt-danger" />
+                        </IconButton>
+                    </Typography>
+                </CardContent>
+            </Card>
+        </Container>
+    )
 }
 
-export default ToDoCard
+export default ToDoCard;

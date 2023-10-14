@@ -1,0 +1,11 @@
+.bt-danger{
+    color: red;
+}
+
+.bt-success {
+    color: green;
+}
+
+.bg-color-gray{ 
+    background-color: lightgray !important;
+}
